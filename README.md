@@ -1,0 +1,2 @@
+# pycad-pipemapsimplex
+通过python控制Autocad绘制市政管网平面图及三大工况图
