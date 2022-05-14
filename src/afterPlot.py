@@ -30,7 +30,7 @@ def textreplace(template, dir):
     doc1.save()
 
 
-def deleteLayer(layername):
+def deleteLayer(layername, Point1=[20000, 4000, 0], Point2=[35000, 14000, 0]):
     """
     删除图层：节点流量、节点压力、等水压线
     运行前确保cad只打开了待修改的文件！
@@ -50,12 +50,12 @@ def deleteLayer(layername):
             outputdata = win32com.client.VARIANT(
                 pythoncom.VT_ARRAY | pythoncom.VT_VARIANT, inputdata)
         return outputdata
+
     acad = win32com.client.Dispatch(
         "Autocad.Application")  # 获取CAD程序，默认启动最后一次的cad
     doc = acad.ActiveDocument
 
     Mode = 0
-    Point1, Point2 = [20000, 4000, 0], [35000, 14000, 0]
     Point1 = ConvertArrays2Variant(Point1, "Double")
     Point2 = ConvertArrays2Variant(Point2, "Double")
 
