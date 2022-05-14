@@ -52,7 +52,7 @@
 2. 填充水厂泵站节点，并为水厂节点命名,e.g.山南水厂
 3. 删除等水压线多余的标注
 4. 手动增加A1图框，然后将各节点的坐标记录下来
-5. 打印
+5. 打印出图
 # 四、参考资料
 1. [Python 二次开发 AutoCAD 简介](https://blog.csdn.net/hulunbuir/category_8525163.html) 作者：Hulunbuir
 2. [335工作室 pythonCAD教程](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=Mzg2ODUzNTIwMA==&action=getalbum&album_id=1881779461612765186&scene=173&from_msgid=2247486513&from_itemidx=1&count=3&nolastread=1#wechat_redirect) 作者：微信公众号(335工作室)
