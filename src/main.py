@@ -18,7 +18,8 @@ import datafile
 import output
 
 # 绝对路径
-workingdic= os.getcwd()
+workingdic = os.getcwd()
+
 
 def datamax():
     """传入最高日最高时数据"""
@@ -195,10 +196,10 @@ def test3_acc():
 def test4():
     """制作定线图"""
     t1 = datetime.datetime.now()
-    afterPlot.deleteLayer('节点流量')
-    afterPlot.deleteLayer('节点压力')
+    afterPlot.deleteLayer('节点流量', Point1=[20000, 4000, 0], Point2=[35000, 14000, 0])
+    afterPlot.deleteLayer('节点压力', Point1=[20000, 4000, 0], Point2=[35000, 14000, 0])
     # afterPlot.deleteLayer('等水压线')
-    afterPlot.deleteLayer('下管段标注')
+    afterPlot.deleteLayer('下管段标注', Point1=[20000, 4000, 0], Point2=[35000, 14000, 0])
     t2 = datetime.datetime.now()
     print("test4删除图层用时:{0}".format(t2 - t1))
 
