@@ -7,6 +7,7 @@
 """
 # 导入外部库
 import datetime
+import os
 from pyautocad import Autocad
 
 # 导入自己写的模块
@@ -17,25 +18,25 @@ import datafile
 import output
 
 # 绝对路径
-pathhead=r'D:/01B硕士/pycad-pipemapsimplex/'
+workingdic= os.getcwd()
 
 def datamax():
     """传入最高日最高时数据"""
-    dir = pathhead+r'data/data_max.xlsx'
+    dir = workingdic + '\\data\\data_max.xlsx'
     d = datafile.Data(dir)
     return d
 
 
 def datafire():
     """传入消防工况数据"""
-    dir = pathhead+r'data/data_fire.xlsx'
+    dir = workingdic + '\\data\\data_fire.xlsx'
     d = datafile.Data(dir)
     return d
 
 
 def dataacc():
     """传入意外事故工况数据"""
-    dir = pathhead+r'data/data_acc.xlsx'
+    dir = workingdic + '\\data\\data_acc.xlsx'
     d = datafile.Data(dir)
     return d
 
@@ -48,7 +49,7 @@ def condata(sheet="Sheet2"):
     Sheet3 是消防工况数据
     Sheet4 是意外事故工况数据
     """
-    dir = pathhead+r'data/contourM.xlsx'
+    dir = workingdic + '\\data\\contourM.xlsx'
     dc = datafile.ConData(dir, sheet)
     return dc
 
@@ -90,7 +91,7 @@ def test1_max():
 
     test1_func1(dir="max.dwg",
                 sht="Sheet2",
-                outdir=pathhead+r"data/dxf/max",
+                outdir=workingdic + "\\data\\dxf\\max",
                 dxf=True)
     t2 = datetime.datetime.now()
     print("绘制最高时最高日工况图用时:{0}".format(t2 - t1))
@@ -100,7 +101,7 @@ def test1_fire():
     t2 = datetime.datetime.now()
     test1_func1(dir="fire.dwg",
                 sht="Sheet3",
-                outdir=pathhead+r"data/dxf/fire",
+                outdir=workingdic + "\\data\\dxf\\fire",
                 dxf=True)
     t3 = datetime.datetime.now()
     print("绘制消防工况图用时:{0}".format(t3 - t2))
@@ -110,7 +111,7 @@ def test1_acc():
     t3 = datetime.datetime.now()
     test1_func1(dir="acc.dwg",
                 sht="Sheet4",
-                outdir=pathhead+r"data/dxf/acc",
+                outdir=workingdic + "\\data\\dxf\\acc",
                 dxf=True)
     t4 = datetime.datetime.now()
     print("绘制意外事故工况图用时:{0}".format(t4 - t3))
@@ -121,7 +122,7 @@ def test1_tmp():
         t4 = datetime.datetime.now()
         test1_func1(dir="tmp.dwg",
                     sht="Sheet2",
-                    outdir=pathhead+r"data/dxf/tmp_new",
+                    outdir=workingdic + "\\data\\dxf\\tmp_new",
                     dxf=False)
         t5 = datetime.datetime.now()
         print("生成template文件用时:{0}".format(t5 - t4))
@@ -139,12 +140,12 @@ def test1_tmp():
 def test2():
     t1 = datetime.datetime.now()
 
-    afterPlot.textreplace(template=pathhead+r'data/dxf/tmp_fire.dxf',
-                          dir=pathhead+r'data/dxf/fire.dxf')
-    afterPlot.textreplace(template=pathhead+r'data/dxf/tmp_max.dxf',
-                          dir=pathhead+r'data/dxf/max.dxf')
-    afterPlot.textreplace(template=pathhead+r'data/dxf/tmp_acc.dxf',
-                          dir=pathhead+'data/dxf/acc.dxf')
+    afterPlot.textreplace(template=workingdic + '\\data\\dxf\\tmp_fire.dxf',
+                          dir=workingdic + '\\data\\dxf\\fire.dxf')
+    afterPlot.textreplace(template=workingdic + '\\data\\dxf\\tmp_max.dxf',
+                          dir=workingdic + '\\data\\dxf\\max.dxf')
+    afterPlot.textreplace(template=workingdic + '\\data\\dxf\\tmp_acc.dxf',
+                          dir=workingdic + '\\data\\dxf\\acc.dxf')
     t2 = datetime.datetime.now()
     print("test3用时:{0}".format(t2 - t1))
 
@@ -168,7 +169,7 @@ def test3_fire():
 
     test3_func3(dir="tmp_fire.dwg",
                 sht="Sheet3",
-                outdir=pathhead+r"output/fire")
+                outdir=workingdic + "\\output\\fire")
     t2 = datetime.datetime.now()
     print("绘制消防工况图等压线用时:{0}".format(t2 - t1))
 
@@ -177,7 +178,7 @@ def test3_max():
     t2 = datetime.datetime.now()
     test3_func3(dir="tmp_max.dwg",
                 sht="Sheet2",
-                outdir=pathhead+r"output/max")
+                outdir=workingdic + "\\output\\max")
     t3 = datetime.datetime.now()
     print("绘制最高时最高日工况图等压线用时:{0}".format(t3 - t2))
 
@@ -186,7 +187,7 @@ def test3_acc():
     t3 = datetime.datetime.now()
     test3_func3(dir="tmp_acc.dwg",
                 sht="Sheet4",
-                outdir=pathhead+r"output/acc")
+                outdir=workingdic + "\\output\\acc")
     t4 = datetime.datetime.now()
     print("绘制意外事故工况图等压线用时:{0}".format(t4 - t3))
 
@@ -208,7 +209,7 @@ def test4():
     contour.plot(acad, dir, dc)
 
     # 另存为
-    output.outdwg(acad, dir=pathhead+r"output/ali")
+    output.outdwg(acad, dir=workingdic + "\\output\\ali")
 
     t3 = datetime.datetime.now()
     print("test4总用时:{0}".format(t3 - t1))
@@ -216,7 +217,8 @@ def test4():
 
 if __name__ == '__main__':
     """
-    使用前记得修改第20行的pathhead
+    在python的编译配置中，working directory中的最后落脚是落在pycad-pipemapsimplex上
+    e.g. working directory--> D:\01毕业设计\pycad-pipemapsimplex
     """
     test1_max()
     # test1_fire()
@@ -226,4 +228,5 @@ if __name__ == '__main__':
     # test3_max()
     # test3_fire()
     # test3_acc()
-    #test4()
+    # test4()
+    # pass
