@@ -63,9 +63,10 @@ def condata(sheet="Sheet2"):
 
 def test1_func1(dir, sht, outdir, dxf):
     """
-    内容：绘制工况图
-    测试须知：运行此函数需提前打开acc、tmp、max、fire的dwg文件
-    输出：dxf文件，属于手改图前操作
+    `dir`是当前背景图的名词
+    `sht`为高程数据表`contourM.xlsx`的sheet
+    `outdir`为导出数据的路径
+    `dxf`为导出格式内容，true导出为dxf格式，false则导出dwg格式
     """
     acad = Autocad(create_if_not_exists=True)
     if sht == 'Sheet2':
@@ -90,9 +91,9 @@ def test1_func1(dir, sht, outdir, dxf):
 def test1_max():
     t1 = datetime.datetime.now()
 
-    test1_func1(dir="max.dwg",
+    test1_func1(dir="background.dwg",
                 sht="Sheet2",
-                outdir=workingdic + "\\data\\dxf\\max",
+                outdir=workingdic + "\\data\\dxf\\test1_max",
                 dxf=True)
     t2 = datetime.datetime.now()
     print("绘制最高时最高日工况图用时:{0}".format(t2 - t1))
@@ -100,9 +101,9 @@ def test1_max():
 
 def test1_fire():
     t2 = datetime.datetime.now()
-    test1_func1(dir="fire.dwg",
+    test1_func1(dir="background.dwg",
                 sht="Sheet3",
-                outdir=workingdic + "\\data\\dxf\\fire",
+                outdir=workingdic + "\\data\\dxf\\test1_fire",
                 dxf=True)
     t3 = datetime.datetime.now()
     print("绘制消防工况图用时:{0}".format(t3 - t2))
@@ -110,9 +111,9 @@ def test1_fire():
 
 def test1_acc():
     t3 = datetime.datetime.now()
-    test1_func1(dir="acc.dwg",
+    test1_func1(dir="background.dwg",
                 sht="Sheet4",
-                outdir=workingdic + "\\data\\dxf\\acc",
+                outdir=workingdic + "\\data\\dxf\\test1_acc",
                 dxf=True)
     t4 = datetime.datetime.now()
     print("绘制意外事故工况图用时:{0}".format(t4 - t3))
@@ -121,9 +122,9 @@ def test1_acc():
 def test1_tmp():
     try:
         t4 = datetime.datetime.now()
-        test1_func1(dir="tmp.dwg",
+        test1_func1(dir="background.dwg",
                     sht="Sheet2",
-                    outdir=workingdic + "\\data\\dxf\\tmp_new",
+                    outdir=workingdic + "\\data\\dxf\\test1_new",
                     dxf=False)
         t5 = datetime.datetime.now()
         print("生成template文件用时:{0}".format(t5 - t4))
@@ -139,14 +140,18 @@ def test1_tmp():
 
 
 def test2():
+    """
+    `template`为模板函数，即各自的tmp
+    `dir`为待替换文本的文件，即各自的dxf
+    """
     t1 = datetime.datetime.now()
 
     afterPlot.textreplace(template=workingdic + '\\data\\dxf\\tmp_fire.dxf',
-                          dir=workingdic + '\\data\\dxf\\fire.dxf')
+                          dir=workingdic + '\\data\\dxf\\test1_fire.dxf')
     afterPlot.textreplace(template=workingdic + '\\data\\dxf\\tmp_max.dxf',
-                          dir=workingdic + '\\data\\dxf\\max.dxf')
+                          dir=workingdic + '\\data\\dxf\\test1_max.dxf')
     afterPlot.textreplace(template=workingdic + '\\data\\dxf\\tmp_acc.dxf',
-                          dir=workingdic + '\\data\\dxf\\acc.dxf')
+                          dir=workingdic + '\\data\\dxf\\test1_acc.dxf')
     t2 = datetime.datetime.now()
     print("test3用时:{0}".format(t2 - t1))
 
@@ -221,13 +226,13 @@ if __name__ == '__main__':
     在python的编译配置中，working directory中的最后落脚是落在pycad-pipemapsimplex上
     e.g. working directory--> D:\01毕业设计\pycad-pipemapsimplex
     """
-    test1_max()
+    # test1_max()
     # test1_fire()
     # test1_acc()
     # test1_tmp()
     # test2()
     # test3_max()
     # test3_fire()
-    # test3_acc()
+    test3_acc()
     # test4()
     # pass
