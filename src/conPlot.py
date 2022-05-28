@@ -148,8 +148,9 @@ def plot3(acad, d, radius, layerUP, layerDOWM):
         # 画上管段：将图层设置为当前图层
         acad.ActiveDocument.ActiveLayer = layerUP
         # 标注1：在线的中点上方“[管段编号]-长度-管径”
-        textStrPipe1 = ('[' + d.pipeId[pipej].value[-3:] + ']-' +
-                        str(d.ln[pipej].value) + '-' + str(d.dn[pipej].value))
+        textStrPipe1 = '{:.f}-{:.2f}-{:.f}'.format(d.pipeId[pipej].value[-3:],
+                                                   d.ln[pipej].value,
+                                                   d.dn[pipej].value)
         textObjPipe1 = acad.model.AddText(
             textStrPipe1, insertPntPipe, heightPipe)
         textObjPipe1.Alignment = 13  # bottomcenter对齐
