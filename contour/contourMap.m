@@ -20,9 +20,9 @@ if(~exist('partten','var'))
 end
 A=xlsread(dirin,'sheet1');
 % 算法
-q=A(:,3);
-x=A(q>0,8);y=A(q>0,9);p=A(q>0,7);% 排除水厂节点
-height=A(q>0,1); %记录高程值
+q=A(:,end-6);
+x=A(q>0,end-1);y=A(q>0,end);p=A(q>0,end-2);% 排除水厂节点
+height=A(q>0,end-8); %记录高程值
 xi=linspace(box(1,1),box(1,3),box(1,2));
 yi=linspace(box(2,1),box(2,3),box(2,2));
 [xi,yi]=meshgrid(xi,yi);
