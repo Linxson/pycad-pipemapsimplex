@@ -74,7 +74,7 @@ test1_tmp()
     - [ ] Attention：不要删除任何一个text，如果报错`index list range error`，那么问题就大概率出在这里！
 2. 修改好之后将`test1_new.dwg`另存为(通过AutoCAD)四份文件，分别命名为：
     - tmp_max.dxf、tmp_acc.dxf、tmp_fire.dxf、tmp_ali.dxf
-
+3. 注意，如果意外事故工况报错`index list range error`，那么有可能是在校核意外事故工况时将某主干管删除了，导致`TEXT`属性缺失，可以在`acc.xlsx`里将该管段属性添加进去即可
 ## 4. 绘制工况图
 
 1. 在`src/main`里运行`test2`函数
