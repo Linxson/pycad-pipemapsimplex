@@ -89,7 +89,7 @@ def plot2(acad, d, radius=50):
         # 水流方向：填充块，置于管段中点处，如果流量是正值，则从上游节点指向下游节点，反之
         xmid = (d.nodex[starti].value + d.nodex[endi].value) / 2
         ymid = (d.nodey[starti].value + d.nodey[endi].value) / 2
-        lmid = radius  # 水流填充块的长度，这里与radius取相同值
+        lmid = 50  # 水流填充块的长度，这里与取50
         if d.isclose[pipei].value != 'Closed':
             if d.q[pipei].value < 0:
                 trix1 = xmid - lmid * math.cos(angle)
@@ -148,7 +148,7 @@ def plot3(acad, d, radius, layerUP, layerDOWM):
         # 画上管段：将图层设置为当前图层
         acad.ActiveDocument.ActiveLayer = layerUP
         # 标注1：在线的中点上方“[管段编号]-长度-管径”
-        textStrPipe1 = '{:.f}-{:.2f}-{:.f}'.format(d.pipeId[pipej].value[-3:],
+        textStrPipe1 = '{}-{:.2f}-{}'.format(d.pipeId[pipej].value[-3:],
                                                    d.ln[pipej].value,
                                                    d.dn[pipej].value)
         textObjPipe1 = acad.model.AddText(
@@ -286,7 +286,7 @@ def plot5(acad, d, radius, box=[140, 180]):
             pass
 
 
-def plot(acad, dir, d, radius=50, distance=185, box=[140, 180]):
+def plot(acad, dir, d, radius=60, distance=185, box=[140, 240]):
     """
     绘制图形及标注
     acad即cad对象

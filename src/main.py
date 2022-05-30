@@ -79,7 +79,7 @@ def test1_func1(dir, sht, outdir, dxf):
         pass
 
     # 运行前先把如下名称的背景图打开
-    conPlot.plot(acad, dir, d,radius=50,distance=185,box=[140,180])
+    conPlot.plot(acad, dir, d,radius=62.5,distance=230,box=[140,210])
 
     # 保存为dxf文件
     if dxf == True:
@@ -226,7 +226,7 @@ if __name__ == '__main__':
     在python的编译配置中，working directory中的最后落脚是落在pycad-pipemapsimplex上
     e.g. working directory--> D:\01毕业设计\pycad-pipemapsimplex
     """
-    test1_max()
+    # test1_max()
     # test1_fire()
     # test1_acc()
     # test1_tmp()
@@ -234,5 +234,5 @@ if __name__ == '__main__':
     # test3_max()
     # test3_fire()
     # test3_acc()
-    # test4()
+    test4()
     # pass
